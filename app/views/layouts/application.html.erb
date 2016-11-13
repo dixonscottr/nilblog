@@ -9,8 +9,12 @@
   </head>
 
   <body>
+    <% flash.each do |name, msg| -%>
+      <%= content_tag :div, msg, class: name %>
+    <% end -%>
     <header>
       <h1>Welcome to Nilblog</h1>
+
     </header>
     <%= yield %>
     <footer>
