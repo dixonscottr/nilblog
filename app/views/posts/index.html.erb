@@ -1,4 +1,4 @@
-<h2>Here be posts:</h2>
+<h2>Blog posts:</h2>
 
 <table>
   <tr>
@@ -11,7 +11,7 @@
     <tr>
       <td><%= link_to "#{post.title}", post_path(post) %></td>
       <td><%= distance_of_time_in_words(Time.now, post.created_at) %> ago</td>
-      <td><%= post.content %></td>
+      <td><%= truncate(post.content) %></td>
       <td><%= link_to 'Edit', edit_post_path(post) %></td>
       <td><%= link_to 'Delete', post_path(post),
               method: :delete,

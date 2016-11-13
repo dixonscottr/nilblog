@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   http_basic_authenticate_with name: "nilbog", password: "goblin", except: [:index, :show]
 
   def index
-    @posts = Post.all
+    @posts = Post.all.order(:created_at)
   end
 
   def new
@@ -17,7 +17,7 @@ class PostsController < ApplicationController
   def show
     @post = Post.find_by(id: params[:id])
     unless @post
-      status 404
+      render_404
     end
   end
 
@@ -50,6 +50,10 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:title, :content)
+  end
+
+  def render_404
+    render :file => "/public/404.html",  :status => 404
   end
 
 end
